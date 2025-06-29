@@ -19,16 +19,14 @@ struct stack_node {
 };
 
 void stack_push(struct stack_node** stack, struct tree_node* data) {
-    struct stack_node* new_node = 
-        (struct stack_node*) calloc(1, sizeof(struct stack_node));
+    struct stack_node* new_node = (struct stack_node*)calloc(1, sizeof(struct stack_node));
     new_node->data = data;
     new_node->next = (*stack);
     (*stack) = new_node;
 }
 
 struct tree_node* stack_pop(struct stack_node** stack) {
-    if (*stack == NULL)
-        return NULL;
+    if (*stack == NULL) return NULL;
     struct tree_node* data = (*stack)->data;
     struct stack_node* new_head = (*stack)->next;
     free(*stack);
@@ -37,8 +35,7 @@ struct tree_node* stack_pop(struct stack_node** stack) {
 }
 
 int empty(struct stack_node* stack) {
-    if (stack == NULL)
-        return 1;
+    if (stack == NULL) return 1;
     return 0;
 }
 
@@ -49,9 +46,7 @@ void pre_order(struct tree_node* root) {
     while (!empty(stack)) {
         curr_node = stack_pop(&stack);
         printf("%d ", curr_node->data);
-        if (curr_node->right)
-            stack_push(&stack, curr_node->right);
-        if (curr_node->left)
-            stack_push(&stack, curr_node->left);
+        if (curr_node->right) stack_push(&stack, curr_node->right);
+        if (curr_node->left) stack_push(&stack, curr_node->left);
     }
 }

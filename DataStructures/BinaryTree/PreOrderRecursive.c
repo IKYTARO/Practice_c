@@ -14,8 +14,7 @@ struct tree_node {
 };
 
 void pre_order(struct tree_node* root) {
-    if (root == NULL)
-        return;
+    if (root == NULL) return;
     printf("%d ", root->data);
     pre_order(root->left);
     pre_order(root->right);
