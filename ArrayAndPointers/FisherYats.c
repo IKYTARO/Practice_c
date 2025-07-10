@@ -1,7 +1,7 @@
 #include <assert.h>
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 /*
     Написать написать программу, которая:
@@ -23,8 +23,7 @@ int myrand() {
 }
 
 void shuffle(int* array, unsigned size) {
-    if (size <= 1)
-        return;
+    if (size <= 1) return;
 
     int ran_pos = myrand() % size;
     int last_elem = array[size - 1];
@@ -33,14 +32,12 @@ void shuffle(int* array, unsigned size) {
     shuffle(array, size - 1);
 }
 
-
 int main() {
     unsigned size;
     check_input_res(scanf("%u", &size));
-    if (size == 0)
-        printf("0");
+    if (size == 0) printf("0");
 
-    int* array = (int*) calloc(size, sizeof(int));
+    int* array = (int*)calloc(size, sizeof(int));
     assert(array);
     int value = 0;
     for (int i = 0; i < size; i++) {

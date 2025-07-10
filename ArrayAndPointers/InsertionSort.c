@@ -1,7 +1,7 @@
 #include <assert.h>
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 /*
     Сортировка вставками.
@@ -17,8 +17,7 @@ void check_input_res(int res) {
 int moveright(int* arr, int key, int last) {
     for (int i = 0; i < last; i++) {
         if (arr[i] > key) {
-            for (int j = last; j > i; j--)
-                arr[j] = arr[j - 1];
+            for (int j = last; j > i; j--) arr[j] = arr[j - 1];
             return i;
         }
     }
@@ -42,7 +41,7 @@ int main() {
     assert(res == 1);
     assert(n > 0);
 
-    parr = (int*) calloc(n, sizeof(int));
+    parr = (int*)calloc(n, sizeof(int));
 
     for (i = 0; i < n; ++i) {
         res = scanf("%d", parr + i);
@@ -52,11 +51,10 @@ int main() {
     res = scanf("%d", &last);
     assert(res == 1);
     assert(last < n);
-    
+
     answ = moveright(parr, parr[last], last);
 
-    for (i = 0; i < n; ++i)
-        printf("%d ", parr[i]);
+    for (i = 0; i < n; ++i) printf("%d ", parr[i]);
     printf("\n");
     printf("%d\n", answ);
     free(parr);

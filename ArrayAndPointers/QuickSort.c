@@ -15,25 +15,20 @@ unsigned partition(int* arr, unsigned low, unsigned high) {
     int pivot = arr[low];
     int left = low + 1, right = high;
     while (left < right) {
-        while (arr[left] <= pivot)
-            left++;
-        while (arr[right] >= pivot)
-            right--;
-        if (left < right)
-            swap(&arr[left], &arr[right]);
+        while (arr[left] <= pivot) left++;
+        while (arr[right] >= pivot) right--;
+        if (left < right) swap(&arr[left], &arr[right]);
     }
     swap(&arr[left - 1], &arr[low]);
     return left - 1;
 }
 
-void print_fail(int *arr, int *shadow, int n, int i, int pivot) {
+void print_fail(int* arr, int* shadow, int n, int i, int pivot) {
     int j;
     printf("\nFAILED!\nSource array: ");
-    for (j = 0; j < n; ++j)
-        printf("%d ", shadow[j]);
+    for (j = 0; j < n; ++j) printf("%d ", shadow[j]);
     printf("\nAfter partition (pivot = %d):\n", pivot);
-    for (j = 0; j < n; ++j)
-        printf("%d ", arr[j]);
+    for (j = 0; j < n; ++j) printf("%d ", arr[j]);
     printf("\nLook at position %d, here something gone wrong\n", i);
 }
 
@@ -56,25 +51,23 @@ int main() {
         shadow[i] = parr[i];
         assert(res == 1);
     }
-    
+
     pivot = parr[0];
 
     answ = partition(parr, 0, n - 1);
 
-    #if defined(VISUAL)
-    for (i = 0; i < n; ++i)
-        printf("%d ", shadow[i]);
+#if defined(VISUAL)
+    for (i = 0; i < n; ++i) printf("%d ", shadow[i]);
     printf("\n");
-    for (i = 0; i < n; ++i)
-        printf("%d ", parr[i]);
+    for (i = 0; i < n; ++i) printf("%d ", parr[i]);
     printf("\n");
-    #endif
+#endif
 
     for (i = 0; i < n; ++i) {
         if ((i < answ && parr[i] > pivot) || (i > answ && parr[i] < pivot))
-        print_fail(parr, shadow, n, i, pivot);
+            print_fail(parr, shadow, n, i, pivot);
     }
-    
+
     printf("%d\n", answ);
 
     free(parr);

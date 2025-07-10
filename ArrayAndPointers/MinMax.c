@@ -1,7 +1,7 @@
 #include <assert.h>
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 /*
     Необходимо написать программу, которая:
@@ -27,15 +27,12 @@ struct mm_pair get_min_max(int const* array, const unsigned size) {
     answer.max = array[1];
     answer.min = array[1];
     for (int i = 1; i < size; i++) {
-        if (array[i] > answer.max)
-            answer.max = array[i];
-        if (array[i] < answer.min) 
-            answer.min = array[i];
+        if (array[i] > answer.max) answer.max = array[i];
+        if (array[i] < answer.min) answer.min = array[i];
     }
 
     return answer;
 }
-
 
 int main() {
     unsigned size;
