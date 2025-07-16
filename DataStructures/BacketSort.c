@@ -86,12 +86,17 @@ int get_max(int *array, size_t size) {
 void sorted_push(struct node_t **list, int value) {
     struct node_t *new_node = (struct node_t *)calloc(1, sizeof(struct node_t));
     new_node->data = value;
-    if (*list) {
-        struct node_t *tmp = *list;
-        while (tmp->next) tmp = tmp->next;
-        tmp->next = new_node;
-    } else {
+
+    if (*list == NULL || (*list)->data >= value) {
+        new_node->next = *list;
         *list = new_node;
+    } else {
+        struct node_t *curr_node = *list;
+        while (curr_node->next && curr_node->next->data < value)
+            curr_node = curr_node->next;
+
+        new_node->next = curr_node->next;
+        curr_node->next = new_node;
     }
 }
 
