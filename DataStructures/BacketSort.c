@@ -1,12 +1,11 @@
-#include <assert.h>
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 /*
     Сформируем бакеты разделив максимальное число M на N частей.
     На вход приходит длина массива и далее сам массив.
-    Задача: распечатать через пробелы все бакеты, разделив их нулевыми символами (ноль в конце каждого
-   бакета).
+    Задача: распечатать через пробелы все бакеты, разделив их нулевыми символами (ноль в конце каждого бакета).
 
     Sample Input 1:
     8 126 348 343 432 316 171 556 670
@@ -37,24 +36,26 @@ int get_max(int *array, size_t size);
 int main() {
     size_t arr_size = 0;
     if (!input_size(&arr_size)) {
-        perror("Invalid argument: array size.");
+        perror("Invalid argument: array size");
         abort();
     }
 
     int *array = (int *)calloc(arr_size, sizeof(int));
     if (!input_array(array, arr_size)) {
         free(array);
-        perror("Invalid argument: array data.");
+        perror("Invalid argument: array data");
         abort();
     }
 
     int max_elem = get_max(array, arr_size);
-    int backet_step = (max_elem + 1) / arr_size;
+    int backet_step = (int)round(max_elem / arr_size);
+    printf("Backet_step = {%d}\n", backet_step);
     struct node_t **backets = (struct node_t **)calloc(arr_size, sizeof(struct node_t *));
     for (size_t i = 0; i < arr_size; i++) {
-        int backet_id = (array[i] == max_elem) ? (int)arr_size - 1 : array[i] / backet_step;
+        int backet_id = (array[i] == max_elem) ? arr_size - 1 : array[i] / backet_step;
         sorted_push(&backets[backet_id], array[i]);
     }
+
     for (size_t i = 0; i < arr_size; i++) {
         print_list(backets[i]);
         printf("%d ", 0);
