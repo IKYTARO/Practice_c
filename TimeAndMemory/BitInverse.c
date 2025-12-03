@@ -2,39 +2,59 @@
 #include <stdio.h>
 #include <assert.h>
 
-/*
-    Вам предлагается инвертировать N-й по счёту бит в массиве.
-    На вход приходит количество чисел, каждое не больше одного байта, 
-        далее все эти числа и дальше номер бита.
-    Номер бита отсчитывается от нулевого бита нулевой ячейки массива. 
-        Нулевой бит первой ячейки будет иметь номер 8 и т.д.
-    Посылка должна состоять из программы, считывающей со стандартного ввода массив и 
-        число N и выводящей на стандартный вывод массив в котором N-й бит инвертирован.
-    В случае если номер запрашиваемого бита больше максимального номера в массиве, 
-        массив выводится без изменений.  
- */
-
-/******************************************************************************
- * ЗАДАЧА: Problem BP -- старший и младший бит
+ /******************************************************************************
+ * ЗАДАЧА: Problem BI -- инверсия бита по индексу
  * 
  * ОПИСАНИЕ:
- *   Вам предлагается найти позицию старшего и младшего установленных битов в числе N.
+ *   Вам предлагается инвертировать N-й по счёту бит в массиве. Номер бита отсчитывается от 
+ *   нулевого бита нулевой ячейки массива. Нулевой бит первой ячейки будет иметь номер 8 и т.д.
  * 
  * ВХОДНЫЕ ДАННЫЕ:
- *   - input: int число N
+ *   - size: unsigned количество чисел, каждое не больше одного байта
+ *   - num1, num2, ...: int все эти числа
+ *   - pos: unsigned номер бита
  * 
  * ВЫХОДНЫЕ ДАННЫЕ:
- *   - minor_bit: младший бит числа
- *   - major_bit: старший бит числа
+ *   - num1, num2, ...: int массив в котором битс номером pos инвертирован
  * 
  * ПРИМЕРЫ:
- *   Вход: 2
- *   Выход: 1 1
+ *   Вход: 4 4 3 3 3 17
+ *   Выход: 4 3 1 3
  * 
- *   Вход: 269971274
- *   Выход: 28 1
+ *   Вход: 4 3 3 3 3 31
+ *   Выход: 3 3 3 131
+ *  
+ *   Вход: 4 3 3 3 3 35
+ *   Выход: 3 3 3 3
  ******************************************************************************/
 
+
+void check_input_res(int res);
+void inverse(int* array, unsigned pos);
+void print_array(int *array, unsigned size);
+
+int main() {
+    unsigned size, pos;
+    int res = scanf("%u", &size);
+    check_input_res(res);
+
+    int *array = (int *)calloc(size, sizeof(int));
+    int value = 0;
+    for (int i = 0; i < size; i++) {
+        res = scanf("%i", &value);
+        check_input_res(res);
+        array[i] = value;
+    }
+
+    res = scanf("%u", &pos);
+    check_input_res(res);
+
+    inverse(array, pos);
+    print_array(array, size);
+    free(array);
+
+    return EXIT_SUCCESS;
+}
 
 void check_input_res(int res) {
     if (res == -1) {
@@ -50,28 +70,8 @@ void inverse(int* array, unsigned pos) {
     array[slot] = array[slot] ^ (1u << cell);
 }
 
-int main() {
-    unsigned size, pos;
-    int res = scanf("%u", &size);
-    check_input_res(res);
-
-    int* array = calloc(size, sizeof(int));
-    int value = 0;
-    for (int i = 0; i < size; i++) {
-        res = scanf("%i", &value);
-        check_input_res(res);
-        array[i] = value;
-    }
-
-    res = scanf("%u", &pos);
-    check_input_res(res);
-
-    if (pos < size * __CHAR_BIT__) 
-        inverse(array, pos);
+void print_array(int *array, unsigned size) {
     for (int i = 0; i < size; i++) {
         printf("%i ", array[i]);
     }
-    free(array);
-
-    return 0;
 }
