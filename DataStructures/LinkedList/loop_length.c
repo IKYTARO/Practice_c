@@ -1,14 +1,11 @@
 #include <stdlib.h>
 
-struct node_t {
-    struct node_t *next;
-    int data;
-};
+#include "linked_list.h"
 
-int loop_length(struct node_t *root) {
+int loop_length(list_t *root) {
     int has_loop = 0;
-    struct node_t *rabbit = root;
-    struct node_t *turtle = root;
+    list_t *rabbit = root;
+    list_t *turtle = root;
 
     while (rabbit != NULL) {
         rabbit = rabbit->next;

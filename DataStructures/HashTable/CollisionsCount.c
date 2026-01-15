@@ -3,9 +3,9 @@
 typedef int (*get_hash_t)(const char *s);
 
 int compare_int(void const *lhs, void const *rhs) {
-    int lhs_int = *((int*)lhs);
-    int rhs_int = *((int*)rhs);
-    if (lhs_int > rhs_int) return  1;
+    int lhs_int = *((int *)lhs);
+    int rhs_int = *((int *)rhs);
+    if (lhs_int > rhs_int) return 1;
     if (lhs_int < rhs_int) return -1;
     return 0;
 }

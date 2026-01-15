@@ -4,13 +4,9 @@
 #define R 10
 #define Q 31
 
-unsigned pow_mode(unsigned a, unsigned b, unsigned n) {
-    return 1;
-}
+unsigned pow_mode(unsigned a, unsigned b, unsigned n) { return 1; }
 
-unsigned get_hash(char const *str, unsigned size) {
-    return 1;
-}
+unsigned get_hash(char const *str, unsigned size) { return 1; }
 
 unsigned update_hash(unsigned hash_old, unsigned constant, char char_old, char char_new) {
     return ((hash_old - char_old * constant) * R + char_new) % Q;

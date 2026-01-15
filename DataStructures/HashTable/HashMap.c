@@ -7,24 +7,15 @@ struct hashpair_t {
 };
 
 struct hashmap_t {
-    unsigned capacity;           
-    unsigned size;               
-    struct hashpair_t **buckets; 
+    unsigned capacity;
+    unsigned size;
+    struct hashpair_t **buckets;
 };
 
-struct hashmap_t *hashmap_create(unsigned m) {
+struct hashmap_t *hashmap_create(unsigned m) {}
 
-}
+int hashmap_add(struct hashmap_t *map, unsigned key, char const *value) {}
 
-int hashmap_add(struct hashmap_t *map, unsigned key,
-                char const *value) {
+char const *hashmap_find(struct hashmap_t *map, unsigned key) {}
 
-}
-
-char const *hashmap_find(struct hashmap_t *map, unsigned key) {
-
-}
-
-void hashmap_destroy(struct hashmap_t *map) {
-
-}
+void hashmap_destroy(struct hashmap_t *map) {}
