@@ -9,10 +9,12 @@ void preorder_iterative(binary_tree_t *root, data_handler handler) {
     stack_t *stack = NULL;
     stack_push(&stack, (void *)root);
 
-    while (!empty(stack)) {
+    while (!stack_empty(stack)) {
         binary_tree_t *curr_node = (binary_tree_t *)stack_pop(&stack);
 
-        handler(curr_node->data);
+        if (curr_node) {
+            handler(curr_node->data);
+        }
 
         if (curr_node->left) {
             stack_push(&stack, (void *)curr_node->right);
@@ -22,6 +24,4 @@ void preorder_iterative(binary_tree_t *root, data_handler handler) {
             stack_push(&stack, (void *)curr_node->left);
         }
     }
-
-    stack_free(stack);
 }

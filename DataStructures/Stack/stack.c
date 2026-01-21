@@ -33,4 +33,4 @@ void *stack_pop(stack_t **root) {
     return data;
 }
 
-int empty(stack_t const *root) { return root == NULL; }
+int stack_empty(stack_t const *root) { return root == NULL; }
