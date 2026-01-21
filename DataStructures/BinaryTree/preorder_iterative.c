@@ -16,11 +16,11 @@ void preorder_iterative(binary_tree_t *root, data_handler handler) {
             handler(curr_node->data);
         }
 
-        if (curr_node->left) {
+        if (curr_node->right) {
             stack_push(&stack, (void *)curr_node->right);
         }
 
-        if (curr_node->right) {
+        if (curr_node->left) {
             stack_push(&stack, (void *)curr_node->left);
         }
     }
