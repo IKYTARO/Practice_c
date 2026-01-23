@@ -6,14 +6,14 @@
 #ifndef BINARY_TREE_H
 #define BINARY_TREE_H
 
- /**
+/**
  * @brief Узел бинарного дерева
  */
 typedef struct binary_tree_node {
     struct binary_tree_node *parent; /**< Родительский узел */
-    struct binary_tree_node *left;   /**< Левый дочерний узел */
-    struct binary_tree_node *right;  /**< Правый дочерний узел */
-    void *data;                      /**< Данные узла */
+    struct binary_tree_node *left; /**< Левый дочерний узел */
+    struct binary_tree_node *right; /**< Правый дочерний узел */
+    void *data;                     /**< Данные узла */
 } binary_tree_t;
 
 /**
@@ -37,7 +37,7 @@ typedef int (*data_comparator)(void const *data_lhs, void const *data_rhs);
  * @param root Корень дерева
  * @param handler Функция обработки данных каждого узла
  */
-void preorder_traversal(binary_tree_t *root, data_handler handler);
+void preorder_recursive(binary_tree_t *root, data_handler handler);
 
 /**
  * @brief Итеративный preorder обход дерева (корень → лево → право)

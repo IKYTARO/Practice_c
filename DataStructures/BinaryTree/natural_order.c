@@ -1,12 +1,13 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 /******************************************************************************
  * ЗАДАЧА: Problem NO — натуральный порядок
  *
- * ОПИСАНИЕ: 
- *   Задача — написать программу, которая считывает поисковое дерево из файла (stdin)
- *   как количество вершин + последовательность данных и выводит preorder обход дерева.
+ * ОПИСАНИЕ:
+ *   Задача — написать программу, которая считывает поисковое дерево из файла
+ *(stdin) как количество вершин + последовательность данных и выводит preorder
+ *обход дерева.
  *
  * ВХОДНЫЕ ДАННЫЕ:
  *   - n: unsigned Количество вершин дерева
@@ -37,7 +38,7 @@ typedef struct stack_node {
 static void stack_push(stack_t **stack, tree_t *node) {
     stack_t *new_node = (stack_t *)malloc(sizeof(stack_t));
     if (!new_node) return;
-    
+
     new_node->node = node;
     new_node->next = *stack;
     *stack = new_node;
@@ -45,18 +46,16 @@ static void stack_push(stack_t **stack, tree_t *node) {
 
 static tree_t *stack_pop(stack_t **stack) {
     if (!stack || !*stack) return NULL;
-    
+
     stack_t *top = *stack;
     tree_t *node = top->node;
     *stack = top->next;
     free(top);
-    
+
     return node;
 }
 
-static int stack_empty(stack_t *stack) {
-    return stack == NULL;
-}
+static int stack_empty(stack_t *stack) { return stack == NULL; }
 
 static tree_t *create_tree_node(int data) {
     tree_t *node = (tree_t *)calloc(1, sizeof(tree_t));
@@ -67,7 +66,7 @@ static tree_t *create_tree_node(int data) {
 }
 
 static void insert_tree_node(tree_t **root, int data) {
-    if (!root ) return;
+    if (!root) return;
 
     if (!*root) {
         *root = create_tree_node(data);
@@ -75,7 +74,7 @@ static void insert_tree_node(tree_t **root, int data) {
     }
 
     tree_t *curr_node = *root;
-    while(1) {
+    while (1) {
         if (data < curr_node->data) {
             if (!curr_node->left) {
                 curr_node->left = create_tree_node(data);

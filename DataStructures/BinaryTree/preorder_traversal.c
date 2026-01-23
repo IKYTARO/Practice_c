@@ -1,9 +1,9 @@
 #include "binary_tree.h"
 
-void preorder_traversal(binary_tree_t *root, data_handler handler) {
+void preorder_recursive(binary_tree_t *root, data_handler handler) {
     if (!root) return;
 
     handler(root->data);
-    preorder_traversal(root->left, handler);
-    preorder_traversal(root->right, handler);
+    preorder_recursive(root->left, handler);
+    preorder_recursive(root->right, handler);
 }

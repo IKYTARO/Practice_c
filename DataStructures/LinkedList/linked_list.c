@@ -10,7 +10,8 @@ struct node_t {
 // Выводим список на стандартный вывод.
 void print_list(struct node_t const* list) {
     struct node_t const* elem;
-    for (elem = list; elem != NULL; elem = elem->next) printf("%d ", elem->data);
+    for (elem = list; elem != NULL; elem = elem->next)
+        printf("%d ", elem->data);
     printf("\n");
 }
 
@@ -43,7 +44,8 @@ struct node_t* iterative_reverse(struct node_t* list) {
     return first;
 }
 
-// Cчитывает список из входного файла, так, чтобы все чётные числа были в начале.
+// Cчитывает список из входного файла, так, чтобы все чётные числа были в
+// начале.
 struct node_t* read_list(FILE* input) {
     struct node_t *even_list = NULL, *odd_list = NULL;
     struct node_t* last_odd = NULL;
@@ -56,7 +58,8 @@ struct node_t* read_list(FILE* input) {
             fprintf(stderr, "File has broken format\n");
             abort();
         }
-        struct node_t* new_node = (struct node_t*)calloc(1, sizeof(struct node_t));
+        struct node_t* new_node =
+            (struct node_t*)calloc(1, sizeof(struct node_t));
         new_node->data = value;
         if (value % 2 == 0) {
             new_node->next = even_list;

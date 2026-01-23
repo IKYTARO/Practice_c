@@ -10,7 +10,8 @@ struct node_t {
 // Выводим список на стандартный вывод.
 void print_list(struct node_t const* list) {
     struct node_t const* elem;
-    for (elem = list; elem != NULL; elem = elem->next) printf("%d ", elem->data);
+    for (elem = list; elem != NULL; elem = elem->next)
+        printf("%d ", elem->data);
     printf("\n");
 }
 
