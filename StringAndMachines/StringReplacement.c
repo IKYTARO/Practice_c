@@ -17,9 +17,8 @@
  *   Возвращаемое значение: указатель на начало полученной строки.
  *
  * ПРИМЕРЫ:
- *   Вход: "Hello, %username, how are you, %username", "%username", "Eric, the
- *Blood Axe" Выход: "Hello, Eric, the Blood Axe, how are you, Eric, the Blood
- *Axe"
+ *   Вход: "Hello, %username, how are you, %username", "%username", "Eric, the Blood Axe"
+ *   Выход: "Hello, Eric, the Blood Axe, how are you, Eric, the Blood Axe"
  ******************************************************************************/
 
 char *replace(char *str, char const *from, char const *to) {
