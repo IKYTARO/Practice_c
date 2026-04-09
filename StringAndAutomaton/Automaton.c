@@ -24,65 +24,20 @@
  *   Выход: 0
  ******************************************************************************/
 
-int is_step(char c) { return (c == 'a' || c == 'b' || c == 'c'); }
-
-int process_symbol(char c, int state) {
-    switch (state) {
-        case 1: {
-            switch (c) {
-                case 'a':
-                    return 1;
-                case 'b':
-                    return 2;
-                case 'c':
-                    return 5;
-            }
-        }
-        case 2: {
-            switch (c) {
-                case 'a':
-                    return 1;
-                case 'b':
-                    return 2;
-                case 'c':
-                    return 3;
-            }
-        }
-        case 3: {
-            switch (c) {
-                case 'a':
-                    return 5;
-                case 'b':
-                    return 4;
-                case 'c':
-                    return 3;
-            }
-        }
-        case 4: {
-            switch (c) {
-                case 'a':
-                    return 5;
-                case 'b':
-                    return 4;
-                case 'c':
-                    return 3;
-            }
-        }
-        case 5:
-            return 5;
-    }
-}
+int states[3][5] = {{1, 1, 5, 5, 5}, 
+                    {2, 2, 4, 4, 5}, 
+                    {5, 3, 3, 3, 5}};
 
 int main() {
     int state = 1;
 
     char c;
-    while ((c = getchar()) != EOF) {
-        if (!is_step(c)) {
+    while (scanf("%c", &c) == 1) {
+        if (c != 'a' && c != 'b' && c != 'c') {
             break;
         }
 
-        state = process_symbol(c, state);
+        state = states[c - 'a'][state - 1];
     }
 
     if (state == 1 || state == 5) {
