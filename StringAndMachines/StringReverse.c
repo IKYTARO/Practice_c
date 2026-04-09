@@ -4,8 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define ensure(cond) ensure_impl((cond), __FILE__, __LINE__, #cond)
-
 /******************************************************************************
  * ЗАДАЧА: Problem SR — переворот подстрок
  *
@@ -19,11 +17,11 @@
  *   - [параметр1]: int Длина искомой подстроки
  *   - [параметр2]: char [] Cама подстрока
  *   - [параметр3]: int Длина текста
- *   - [параметр4]: char [] Cам текст, в котором нужно сделать поиск и замену.
+ *   - [параметр4]: char [] Cам текст, в котором нужно сделать поиск и замену
  *
  * ВЫХОДНЫЕ ДАННЫЕ:
  *   - [результат1]: char []  Текст с перевёрнутыми подстроками, либо исходный
- *                            текст, если ни одной подстроки не найдено.
+ *                            текст, если ни одной подстроки не найдено
  *
  * ПРИМЕРЫ:
  *   Вход: 5 world 13 Hello, world!
@@ -32,6 +30,8 @@
  *   Вход: 3 abc 51 qffUt g abcykvabcb x Lv BRabc g KUrabcN wQabcylz R
  *   Выход: qffUt g cbaykvcbab x Lv BRcba g KUrcbaN wQcbaylz R
  ******************************************************************************/
+
+#define ensure(cond) ensure_impl((cond), __FILE__, __LINE__, #cond)
 
 static void ensure_impl(bool cond, const char *file, int line,
                         const char *cond_str) {
