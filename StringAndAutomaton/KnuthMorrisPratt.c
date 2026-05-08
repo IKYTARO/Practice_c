@@ -6,10 +6,10 @@
  *
  * ОПИСАНИЕ:
  *   Написать функцию patpreproc, которая препроцессирует паттерн, чтобы далее
- *   использовать алгоритм Кнута-Морриса-Пратта
+ *   использовать алгоритм Кнута-Морриса-Пратта.
  *
  *   Написать функцию strstrci с наперёд заданным прототипом, которая ищет подстроку
- *   в строке, независимо от регистра символов (ci означает case insensitive)
+ *   в строке, независимо от регистра символов (ci означает case insensitive).
  *
  *   void patpreproc(char const * needle, int * needle_lps);
  *   char * strstrci(char const * needle, int const * needle_lps, char const *haystack);
